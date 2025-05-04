@@ -14,7 +14,17 @@ class VehicleListScreenState extends State<VehicleListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('LotTrack Lite')),
+      appBar: AppBar(
+        backgroundColor:Color(0xFF2D3E50),
+        title: const Text('Lot Track Lite',
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.w100,
+            fontSize: 34, 
+            letterSpacing: 1.2,
+          ),
+        ),
+      ),
       body: ListView.builder(
         itemCount: dummyVehicles.length,
         itemBuilder: (ctx, index) {

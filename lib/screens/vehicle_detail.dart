@@ -34,17 +34,54 @@ class VehicleDetailScreenState extends State<VehicleDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(widget.vehicle.model)),
-      body: Padding(
-        padding: EdgeInsets.all(16),
+      appBar: AppBar(
+        backgroundColor: const Color(0xFF2D3E50),
+        iconTheme: const IconThemeData(color: Colors.white),
+        title: Text('${widget.vehicle.year} ${widget.vehicle.make} ${widget.vehicle.model}', style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.w100,
+            fontSize: 34, 
+            letterSpacing: 1.2,
+          ),
+            )),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: RadialGradient(
+            center: Alignment.center,
+            radius: 1.2,
+            colors: [
+              Colors.white,
+              Color.fromARGB(255, 207, 231, 211),
+            ],
+          ),
+        ),
+        child: Center(
+          child: ConstrainedBox(
+          constraints: BoxConstraints(
+              maxWidth: 1000,
+              minWidth: MediaQuery.of(context).size.width * 0.3,
+              minHeight: 500,
+              maxHeight: MediaQuery.of(context).size.height * 0.7,
+            ),
+          child: Card(
+            margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+            elevation: 6,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+            child: Padding(
+        padding: EdgeInsets.all(50),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text('ID: ${widget.vehicle.id}', style: TextStyle(fontSize: 16)),
-            SizedBox(height: 10),
-            Text('Current Status:', style: TextStyle(fontSize: 16)),
+            SizedBox(height: 60),
+            Text('Last Updated:', textAlign: TextAlign.center, style: TextStyle(fontSize: 16)),
+            Text(widget.vehicle.lastUpdated.toString()),
+            SizedBox(height: 60),
+            Text('Current Status:', textAlign: TextAlign.center, style: TextStyle(fontSize: 16)),
             DropdownButton<String>(
               value: widget.vehicle.status,
+              alignment: Alignment.center,
               onChanged: (value) {
                 if (value != null) updateStatus(value);
               },
@@ -53,11 +90,13 @@ class VehicleDetailScreenState extends State<VehicleDetailScreen> {
               }).toList(),
             ),
             SizedBox(height: 20),
-            Text('Last Updated:', style: TextStyle(fontSize: 16)),
-            Text(widget.vehicle.lastUpdated.toString()),
           ],
         ),
       ),
+          ),
+        ),
+      ),
+      )  
     );
   }
 }
