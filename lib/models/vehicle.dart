@@ -4,6 +4,9 @@ class Vehicle {  String id;
   int year;
   String color;
   String licensePlate;
+  String status;
+  DateTime lastUpdated;
+
 
   Vehicle({
     required this.id,
@@ -12,6 +15,8 @@ class Vehicle {  String id;
     required this.year,
     required this.color,
     required this.licensePlate,
+    required this.status,
+    required this.lastUpdated,
   });
 
   // Method to convert Vehicle object to a map
@@ -23,6 +28,8 @@ class Vehicle {  String id;
       'year': year,
       'color': color,
       'licensePlate': licensePlate,
+      'status': status,
+      'lastUpdated': lastUpdated.toIso8601String(),
     };
   }
 
@@ -35,6 +42,8 @@ class Vehicle {  String id;
       year: map['year'],
       color: map['color'],
       licensePlate: map['licensePlate'],
+      status: map['status'],
+      lastUpdated: DateTime.parse(map['lastUpdated'])
     );
   }
 }
