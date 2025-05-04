@@ -9,6 +9,11 @@ class VehicleCard extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isMobile = screenWidth < 600;
+    final horizontalImageMargin = isMobile ? 20.0 : 210.0;
+    final imageHeight = isMobile ? 120.0 : 160.0;
+
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 50),
       color: const Color.fromARGB(255, 207, 231, 211),
@@ -22,13 +27,13 @@ class VehicleCard extends StatelessWidget {
           children: [
             // Car Image
             Container(
-              margin: const EdgeInsets.only(left: 210, right: 210), // add space around image
+              margin: EdgeInsets.symmetric(horizontal: horizontalImageMargin), // add space around image
               child: ClipRRect(
                   borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),
                   child: Image.network(
                     vehicle.imageUrl,
                     width: double.infinity,
-                    height: 150,
+                    height: imageHeight, // responsive height
                     fit: BoxFit.contain,
                     errorBuilder: (context, error, stackTrace) => Container(
                       height: 150,
