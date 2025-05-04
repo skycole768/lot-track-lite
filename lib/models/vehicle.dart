@@ -6,6 +6,7 @@ class Vehicle {  String id;
   String licensePlate;
   String status;
   DateTime lastUpdated;
+  String imageUrl;
 
 
   Vehicle({
@@ -17,33 +18,7 @@ class Vehicle {  String id;
     required this.licensePlate,
     required this.status,
     required this.lastUpdated,
+    required this.imageUrl,
   });
-
-  // Method to convert Vehicle object to a map
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'make': make,
-      'model': model,
-      'year': year,
-      'color': color,
-      'licensePlate': licensePlate,
-      'status': status,
-      'lastUpdated': lastUpdated.toIso8601String(),
-    };
-  }
-
-  // Factory method to create a Vehicle object from a map
-  factory Vehicle.fromMap(Map<String, dynamic> map) {
-    return Vehicle(
-      id: map['id'],
-      make: map['make'],
-      model: map['model'],
-      year: map['year'],
-      color: map['color'],
-      licensePlate: map['licensePlate'],
-      status: map['status'],
-      lastUpdated: DateTime.parse(map['lastUpdated'])
-    );
-  }
+  
 }
